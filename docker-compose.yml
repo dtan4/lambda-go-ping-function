@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  go:
+    build:
+      dockerfile: dockerfiles/Dockerfile-go
+      context: .
+    entrypoint: go
+    environment:
+      - GO111MODULE=on
+    volumes:
+      - $PWD:/go/src/github.com/dtan4/lambda-go-echo-function
+      - $GOPATH/pkg/mod:/go/pkg/mod
+    working_dir: /go/src/github.com/dtan4/lambda-go-echo-function
+
+  sam:
+    build:
+      dockerfile: dockerfiles/Dockerfile-sam
+      context: .
+    entrypoint: sam
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION
+      # for CodeBuild
+      - AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
+      - AWS_EXECUTION_ENV
+    network_mode: "host" # to see container metadata
+    volumes:
+      - $PWD:/app
+    working_dir: /app

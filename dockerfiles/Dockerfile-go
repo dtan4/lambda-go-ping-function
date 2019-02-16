@@ -1,0 +1,6 @@
+# -*- mode: dockerfile -*-
+
+FROM golang:1.11.5-stretch
+
+RUN go get -v github.com/golang/mock/gomock
+RUN go install -v github.com/golang/mock/mockgen
