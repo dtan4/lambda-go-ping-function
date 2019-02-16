@@ -1,6 +1,12 @@
 version: "3"
 
 services:
+  envsubst:
+    build:
+      dockerfile: dockerfiles/Dockerfile-envsubst
+      context: .
+    entrypoint: envsubst
+
   go:
     build:
       dockerfile: dockerfiles/Dockerfile-go
