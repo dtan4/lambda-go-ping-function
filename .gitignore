@@ -21,3 +21,8 @@
 /Godeps/
 
 # End of https://www.gitignore.io/api/go
+
+/bin
+/coverage.txt
+/packaged.yaml
+/template.yaml
