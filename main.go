@@ -6,8 +6,10 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-xray-sdk-go/xray"
 	"github.com/pkg/errors"
 )
 
@@ -43,6 +45,10 @@ func RealHandler(ctx context.Context) error {
 }
 
 func Handler(ctx context.Context) error {
+	HTTPClient = xray.Client(http.DefaultClient)
+	PingURL = defaultPingURL
+	Stdout = os.Stdout
+
 	return RealHandler(ctx)
 }
 
