@@ -24,7 +24,14 @@ var (
 )
 
 func RealHandler(ctx context.Context) error {
-	resp, err := HTTPClient.Get(PingURL)
+	req, err := http.NewRequest(http.MethodGet, PingURL, nil)
+	if err != nil {
+		return errors.Wrap(err, "cannot create HTTP request")
+	}
+
+	req.WithContext(ctx)
+
+	resp, err := HTTPClient.Do(req)
 	if err != nil {
 		return errors.Wrapf(err, "cannot access to the URL: %s", PingURL)
 	}
