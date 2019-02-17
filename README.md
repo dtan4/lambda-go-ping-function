@@ -1,5 +1,7 @@
 # lambda-go-echo-function
 
+[![Build Status](https://travis-ci.org/dtan4/lambda-go-ping-function.svg?branch=master)](https://travis-ci.org/dtan4/lambda-go-ping-function)
+
 This is a sample template for lambda-go-echo-function - Below is a brief explanation of what we have generated for you:
 
 ```bash
